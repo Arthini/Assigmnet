@@ -1,8 +1,8 @@
-// App.js
 import React, { useState } from 'react';
-import { Container, Grid, Paper, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
+import { Container, Grid, Paper, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography, Box } from '@mui/material';
 import CreateTableDialog from './components/CreateTableDialog';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -80,10 +80,10 @@ const App = () => {
   }
 
   return (
-    <div>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header onOpenCreateTable={handleOpenCreateTableDialog} onOpenTableList={handleOpenTableListDialog} />
-      <Container>
-        <Grid container spacing={3} style={{ marginTop: 20 }}>
+      <Container component="main" sx={{ mt: 8, mb: 2, flexGrow: 1 }}>
+        <Grid container spacing={3}>
           {tables.map((table, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <TableContainer component={Paper}>
@@ -94,10 +94,10 @@ const App = () => {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span>{table.tableName}</span>
                           <div>
-                            <IconButton color="#00000" onClick={() => handleOpenEditTableDialog(index)}>
+                            <IconButton color="white" onClick={() => handleOpenEditTableDialog(index)}>
                               <EditIcon />
                             </IconButton>
-                            <IconButton color="black" onClick={() => handleOpenAddColumnDialog(index)}>
+                            <IconButton color="white" onClick={() => handleOpenAddColumnDialog(index)}>
                               <AddIcon />
                             </IconButton>
                             <IconButton color="white" onClick={() => handleDeleteTable(index)}>
@@ -125,10 +125,10 @@ const App = () => {
       <CreateTableDialog open={openCreateTableDialog} onClose={handleCloseCreateTableDialog} onSubmit={handleSubmitCreateTableDialog} tableData={selectedTableIndex !== null ? tables[selectedTableIndex] : null} />
       <AddColumnDialog open={openAddColumnDialog} onClose={handleCloseAddColumnDialog} onSubmit={handleSubmitAddColumnDialog} />
       <Dialog open={openTableListDialog} onClose={handleCloseTableListDialog} maxWidth="md" fullWidth>
-        <DialogTitle sx={{ backgroundColor: '#1976D2',color:'white'}}>Table List</DialogTitle>
+        <DialogTitle sx={{ backgroundColor: '#1976D2', color: 'white' }}>Table List</DialogTitle>
         <DialogContent>
           {tables.length === 0 ? (
-            <Typography variant="h6" align="center"  sx={{padding:'40px 0 0 0'}}>Empty List 😢</Typography>
+            <Typography variant="h6" align="center" sx={{ padding: '40px 0 0 0' }}>Empty List 😢</Typography>
           ) : (
             tables.map((table, index) => (
               <div key={index}>
@@ -146,7 +146,8 @@ const App = () => {
           <Button onClick={handleCloseTableListDialog} color="primary">Close</Button>
         </DialogActions>
       </Dialog>
-    </div>
+      <Footer />
+    </Box>
   );
 };
 

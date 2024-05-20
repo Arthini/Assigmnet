@@ -30,7 +30,7 @@ const Login = ({ onLogin }) => {
     }}>
       <Paper elevation={3} style={{ padding: 20, width: '100%', maxWidth: 400 }}>
         <Typography variant="h4" gutterBottom align="center">
-          Logo
+          Arthu👑
         </Typography>
         <TextField
           label="Email Address"

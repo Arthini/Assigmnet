@@ -9,14 +9,14 @@ const Header = ({ onOpenCreateTable, onOpenTableList }) => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Logo
+          Arthu👑
         </Typography>
         <Button color="inherit" onClick={onOpenCreateTable}>
-         New<AddIcon /> 
+         New Table 
         </Button>
-        <Button color="inherit" onClick={onOpenTableList}>
-          Table List
-        </Button>
+        <IconButton color="inherit" onClick={onOpenTableList}>
+          <ListIcon/>
+        </IconButton>
       </Toolbar>
     </AppBar>
   );
